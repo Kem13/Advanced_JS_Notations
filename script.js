@@ -274,3 +274,53 @@ for (i = k; i < points.length; i++) {
     // the heap has 'k' points closest to the origin, return them in a list
     return maxHeap.toArray();
 }
+// Space complexity O(N) Time complexity O(N * logN)
+const Heap = require('./collections/heap')
+
+function minimum_cost_to_connect_ropes(ropeLengths) {
+    const minHeap = new Heap(ropeLengths, null, ((a,b) => b -a))
+
+    let result = 0;
+    while (minHeap.length > 1) {
+        const tempCost = minHeap.pop() + minHeap.pop()
+        result += tempCost;
+        minHeap.push(tempCost)
+    }
+    return result;
+}
+
+// Merge K sort list
+// Given an array of 'K' sorted linkedlists, merge them into one sorted list.
+//  Time complexity O(N * logK) Space complexity
+ class ListNode {
+     constructor(value, next = null) {
+         this.value = value;
+         this.next = next;
+     }
+ }
+
+ function merge_list(lists) {
+     const minHeap = new Heap([], null, ((a,b) => b.value - a.value));
+
+     lists.forEach((a) => {
+         if (a !== null ) {
+             minHeap.push(a);
+         }
+     });
+    let resultHead = null,
+    resultTail = null;
+    while (minHeap.length > 0) {
+        const node = minHeap.pop
+        if (resultHead === null) {
+            resultHead = resultTail = node;
+        } else {
+            resultTail.next = node;
+            resultTail = resultTail.next;
+        }
+        if (node.next !== null) {
+            minHeap.push(node.next);
+        }
+    }
+
+    return resultHead;
+ }
