@@ -306,7 +306,7 @@ function minimum_cost_to_connect_ropes(ropeLengths) {
          if (a !== null ) {
              minHeap.push(a);
          }
-     });
+     }); 
     let resultHead = null,
     resultTail = null;
     while (minHeap.length > 0) {
